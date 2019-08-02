@@ -1,0 +1,33 @@
+{
+  "name": "@nelts/worker",
+  "version": "1.0.1",
+  "description": "worker for nelts",
+  "main": "dist/index.js",
+  "source": "dist",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nelts/worker.git"
+  },
+  "scripts": {
+    "build": "rm -rf dist/ && tsc -d"
+  },
+  "keywords": [
+    "template",
+    "nelts"
+  ],
+  "author": "cevio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nelts/worker/issues"
+  },
+  "homepage": "https://github.com/nelts/worker#readme",
+  "devDependencies": {
+    "@types/node": "^12.6.8",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@nelts/factory": "^1.0.0",
+    "@nelts/messager": "^1.0.3",
+    "@nelts/process": "^1.1.10"
+  }
+}
