@@ -31,6 +31,6 @@ export default class WorkerFactory extends Factory<WorkerPlugin> implements Widg
   }
 
   componentReceiveMessage(message: MessageReceiveDataOptions, socket?: any) {
-    this._messager.receiveMessage(message, socket);
+    this.messager.receiveMessage(message, socket);
   }
 }

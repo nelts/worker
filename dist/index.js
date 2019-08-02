@@ -22,7 +22,7 @@ class WorkerFactory extends factory_1.Factory {
         console.log('created');
     }
     componentReceiveMessage(message, socket) {
-        this._messager.receiveMessage(message, socket);
+        this.messager.receiveMessage(message, socket);
     }
 }
 exports.default = WorkerFactory;
