@@ -1,6 +1,6 @@
 {
   "name": "@nelts/worker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "worker for nelts",
   "main": "dist/index.js",
   "source": "dist",
@@ -26,8 +26,9 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@nelts/factory": "^1.0.0",
-    "@nelts/messager": "^1.0.3",
-    "@nelts/process": "^1.1.10"
+    "@nelts/factory": "^1.0.2",
+    "@nelts/messager": "^1.0.9",
+    "@nelts/process": "^1.1.11",
+    "@nelts/utils": "^1.0.7"
   }
 }
