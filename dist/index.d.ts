@@ -22,6 +22,7 @@ export default class WorkerFactory extends Factory<WorkerPlugin> implements Widg
     readonly socket: boolean;
     readonly sticky: string;
     readonly port: number;
+    readonly frameworker: WorkerServiceFrameworker;
     componentWillCreate(): Promise<void>;
     componentDidCreated(): Promise<void>;
     componentWillDestroy(): Promise<void>;

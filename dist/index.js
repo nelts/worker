@@ -31,6 +31,9 @@ class WorkerFactory extends factory_1.Factory {
     get port() {
         return this._port;
     }
+    get frameworker() {
+        return this._frameworker;
+    }
     async componentWillCreate() {
         await super.componentWillCreate();
         if (this._frameworker.componentWillCreate) {

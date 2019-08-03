@@ -53,6 +53,10 @@ export default class WorkerFactory extends Factory<WorkerPlugin> implements Widg
     return this._port;
   }
 
+  get frameworker() {
+    return this._frameworker;
+  }
+
   async componentWillCreate() {
     await super.componentWillCreate();
     if (this._frameworker.componentWillCreate) {
