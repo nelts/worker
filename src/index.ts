@@ -8,7 +8,7 @@ import WorkerPlugin from './plugin';
 import BootstrapCompiler from './compilers/bootstrap';
 
 export declare class WorkerServiceFrameworker {
-  constructor(app: WorkerFactory);
+  constructor(app: WorkerFactory<WorkerServiceFrameworker>);
   componentWillCreate?(): Promise<any>;
   componentDidCreated?(): Promise<any>;
   componentWillDestroy?(): Promise<any>;
@@ -20,11 +20,11 @@ export {
   WorkerPlugin,
 }
 
-export default class WorkerFactory extends Factory<WorkerPlugin> implements WidgetComponent {
+export default class WorkerFactory<T extends WorkerServiceFrameworker> extends Factory<WorkerPlugin<T>> implements WidgetComponent {
   private _port: number;
   private _socket: boolean;
   private _sticky: string;
-  private _frameworker: WorkerServiceFrameworker;
+  private _frameworker: T;
   private _messager: WorkerMessager<this>;
   constructor(processer: Processer, args: InCommingMessage) {
     super(processer, args, WorkerPlugin);
@@ -33,7 +33,7 @@ export default class WorkerFactory extends Factory<WorkerPlugin> implements Widg
     this._port = Number(args.port || 8080);
     this._messager = new WorkerMessager(this, args.mpid);
     if (!this.configs.workerServiceFrameworker) throw new Error('cannot find the workerServiceFrameworker');
-    const frameworker: { new(app: WorkerFactory): WorkerServiceFrameworker } = typeof this.configs.workerServiceFrameworker === 'string' 
+    const frameworker: { new(app: WorkerFactory<T>): T } = typeof this.configs.workerServiceFrameworker === 'string' 
       ? RequireDefault<WorkerServiceFrameworker>(this.configs.workerServiceFrameworker) 
       : this.configs.workerServiceFrameworker;
     this._frameworker = new frameworker(this);

@@ -2,7 +2,8 @@ import * as path from 'path';
 import WorkerPlugin from '../plugin';
 import * as globby from 'globby';
 import { RequireDefault } from '@nelts/utils';
-export default async function Bootstrap(plu: WorkerPlugin) {
+import { WorkerServiceFrameworker } from '../index';
+export default async function Bootstrap<T extends WorkerServiceFrameworker>(plu: WorkerPlugin<T>) {
   const cwd = plu.source;
   const files = await globby([ 
     'worker.ts', 
@@ -11,7 +12,7 @@ export default async function Bootstrap(plu: WorkerPlugin) {
   ], { cwd });
   if (files.length) {
     const file = path.resolve(cwd, files[0]);
-    const callback = RequireDefault<(plu: WorkerPlugin) => Promise<any>>(file);
+    const callback = RequireDefault<(plu: WorkerPlugin<T>) => Promise<any>>(file);
     if (typeof callback === 'function') {
       await callback(plu);
     }

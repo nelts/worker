@@ -1,9 +1,9 @@
 import { Plugin } from '@nelts/factory';
-import WorkerFactory from './index';
+import WorkerFactory, { WorkerServiceFrameworker } from './index';
 import { MessageSendOptions } from '@nelts/messager';
 
-export default class WorkerPlugin extends Plugin<WorkerFactory> {
-  constructor(app: WorkerFactory, name: string, cwd: string) {
+export default class WorkerPlugin<T extends WorkerServiceFrameworker> extends Plugin<WorkerFactory<T>> {
+  constructor(app: WorkerFactory<T>, name: string, cwd: string) {
     super(app, name, cwd);
   }
 

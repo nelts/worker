@@ -1,2 +1,3 @@
 import WorkerPlugin from '../plugin';
-export default function Bootstrap(plu: WorkerPlugin): Promise<void>;
+import { WorkerServiceFrameworker } from '../index';
+export default function Bootstrap<T extends WorkerServiceFrameworker>(plu: WorkerPlugin<T>): Promise<void>;

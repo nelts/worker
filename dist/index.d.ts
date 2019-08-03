@@ -3,7 +3,7 @@ import { Factory, InCommingMessage } from '@nelts/factory';
 import { Worker as WorkerMessager, MessageReceiveDataOptions } from '@nelts/messager';
 import WorkerPlugin from './plugin';
 export declare class WorkerServiceFrameworker {
-    constructor(app: WorkerFactory);
+    constructor(app: WorkerFactory<WorkerServiceFrameworker>);
     componentWillCreate?(): Promise<any>;
     componentDidCreated?(): Promise<any>;
     componentWillDestroy?(): Promise<any>;
@@ -11,7 +11,7 @@ export declare class WorkerServiceFrameworker {
     componentCatchError?(err: Error): void;
 }
 export { WorkerPlugin, };
-export default class WorkerFactory extends Factory<WorkerPlugin> implements WidgetComponent {
+export default class WorkerFactory<T extends WorkerServiceFrameworker> extends Factory<WorkerPlugin<T>> implements WidgetComponent {
     private _port;
     private _socket;
     private _sticky;
@@ -22,7 +22,7 @@ export default class WorkerFactory extends Factory<WorkerPlugin> implements Widg
     readonly socket: boolean;
     readonly sticky: string;
     readonly port: number;
-    readonly frameworker: WorkerServiceFrameworker;
+    readonly frameworker: T;
     componentWillCreate(): Promise<void>;
     componentDidCreated(): Promise<void>;
     componentWillDestroy(): Promise<void>;
