@@ -1,6 +1,6 @@
 {
   "name": "@nelts/worker",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "worker for nelts",
   "main": "dist/index.js",
   "source": "dist",
@@ -29,6 +29,7 @@
     "@nelts/factory": "^1.0.2",
     "@nelts/messager": "^1.0.9",
     "@nelts/process": "^1.1.11",
-    "@nelts/utils": "^1.0.7"
+    "@nelts/utils": "^1.0.7",
+    "globby": "^10.0.1"
   }
 }

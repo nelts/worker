@@ -5,6 +5,8 @@ import { Worker as WorkerMessager, MessageReceiveDataOptions } from '@nelts/mess
 import { RequireDefault } from '@nelts/utils';
 import WorkerPlugin from './plugin';
 
+import BootstrapCompiler from './compilers/bootstrap';
+
 export declare class WorkerServiceFrameworker {
   constructor(app: WorkerFactory);
   componentWillCreate?(): Promise<any>;
@@ -62,6 +64,7 @@ export default class WorkerFactory extends Factory<WorkerPlugin> implements Widg
     if (this._frameworker.componentWillCreate) {
       await this._frameworker.componentWillCreate();
     }
+    this.compiler.addCompiler(BootstrapCompiler);
   }
 
   async componentDidCreated() {

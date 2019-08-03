@@ -5,6 +5,7 @@ const messager_1 = require("@nelts/messager");
 const utils_1 = require("@nelts/utils");
 const plugin_1 = require("./plugin");
 exports.WorkerPlugin = plugin_1.default;
+const bootstrap_1 = require("./compilers/bootstrap");
 class WorkerFactory extends factory_1.Factory {
     constructor(processer, args) {
         super(processer, args, plugin_1.default);
@@ -39,6 +40,7 @@ class WorkerFactory extends factory_1.Factory {
         if (this._frameworker.componentWillCreate) {
             await this._frameworker.componentWillCreate();
         }
+        this.compiler.addCompiler(bootstrap_1.default);
     }
     async componentDidCreated() {
         await super.componentDidCreated();
