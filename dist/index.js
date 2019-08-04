@@ -16,7 +16,7 @@ class WorkerFactory extends factory_1.Factory {
         if (!this.configs.workerServiceFrameworker)
             throw new Error('cannot find the workerServiceFrameworker');
         const frameworker = typeof this.configs.workerServiceFrameworker === 'string'
-            ? utils_1.RequireDefault(this.configs.workerServiceFrameworker)
+            ? utils_1.RequireModuleDefault(this.configs.workerServiceFrameworker)
             : this.configs.workerServiceFrameworker;
         this._frameworker = new frameworker(this);
     }

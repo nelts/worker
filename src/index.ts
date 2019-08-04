@@ -2,7 +2,7 @@
 import { WidgetComponent, Processer } from '@nelts/process';
 import { Factory, InCommingMessage } from '@nelts/factory';
 import { Worker as WorkerMessager, MessageReceiveDataOptions } from '@nelts/messager';
-import { RequireDefault } from '@nelts/utils';
+import { RequireModuleDefault } from '@nelts/utils';
 import WorkerPlugin from './plugin';
 
 import BootstrapCompiler from './compilers/bootstrap';
@@ -34,7 +34,7 @@ export default class WorkerFactory<T extends WorkerServiceFrameworker> extends F
     this._messager = new WorkerMessager(this, args.mpid);
     if (!this.configs.workerServiceFrameworker) throw new Error('cannot find the workerServiceFrameworker');
     const frameworker: { new(app: WorkerFactory<T>): T } = typeof this.configs.workerServiceFrameworker === 'string' 
-      ? RequireDefault<WorkerServiceFrameworker>(this.configs.workerServiceFrameworker) 
+      ? RequireModuleDefault<WorkerServiceFrameworker>(this.configs.workerServiceFrameworker) 
       : this.configs.workerServiceFrameworker;
     this._frameworker = new frameworker(this);
   }
