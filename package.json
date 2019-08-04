@@ -26,10 +26,10 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@nelts/factory": "^1.0.9",
-    "@nelts/messager": "^1.0.13",
-    "@nelts/process": "^1.1.18",
-    "@nelts/utils": "^1.0.14",
+    "@nelts/factory": "^1.0.10",
+    "@nelts/messager": "^1.0.14",
+    "@nelts/process": "^1.1.19",
+    "@nelts/utils": "^1.0.17",
     "globby": "^10.0.1"
   }
 }
