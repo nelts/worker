@@ -1,5 +1,5 @@
 // import * as net from 'net';
-import { WidgetComponent, Processer } from '@nelts/process';
+import { Processer } from '@nelts/process';
 import { Factory, InCommingMessage } from '@nelts/factory';
 import { Worker as WorkerMessager, MessageReceiveDataOptions } from '@nelts/messager';
 import { RequireModuleDefault } from '@nelts/utils';
@@ -20,7 +20,7 @@ export {
   WorkerPlugin,
 }
 
-export default class WorkerFactory<T extends WorkerServiceFrameworker> extends Factory<WorkerPlugin<T>> implements WidgetComponent {
+export default class WorkerFactory<T extends WorkerServiceFrameworker> extends Factory<WorkerPlugin<T>> {
   private _port: number;
   private _socket: boolean;
   private _sticky: string;
