@@ -59,6 +59,13 @@ export default class WorkerFactory<T extends WorkerServiceFrameworker> extends F
     return this._frameworker;
   }
 
+  startJob(name: string, auto?: boolean, run?: boolean) {
+    return this.messager.asyncSend('event:put:job', {
+      property: name,
+      auto, run,
+    });
+  }
+
   async componentWillCreate() {
     await super.componentWillCreate();
     if (this._frameworker.componentWillCreate) {

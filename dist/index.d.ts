@@ -23,6 +23,7 @@ export default class WorkerFactory<T extends WorkerServiceFrameworker> extends F
     readonly sticky: string;
     readonly port: number;
     readonly frameworker: T;
+    startJob(name: string, auto?: boolean, run?: boolean): Promise<any>;
     componentWillCreate(): Promise<void>;
     componentDidCreated(): Promise<void>;
     componentWillDestroy(): Promise<void>;
