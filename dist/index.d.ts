@@ -1,4 +1,4 @@
-import { WidgetComponent, Processer } from '@nelts/process';
+import { Processer } from '@nelts/process';
 import { Factory, InCommingMessage } from '@nelts/factory';
 import { Worker as WorkerMessager, MessageReceiveDataOptions } from '@nelts/messager';
 import WorkerPlugin from './plugin';
@@ -11,7 +11,7 @@ export declare class WorkerServiceFrameworker {
     componentCatchError?(err: Error): void;
 }
 export { WorkerPlugin, };
-export default class WorkerFactory<T extends WorkerServiceFrameworker> extends Factory<WorkerPlugin<T>> implements WidgetComponent {
+export default class WorkerFactory<T extends WorkerServiceFrameworker> extends Factory<WorkerPlugin<T>> {
     private _port;
     private _socket;
     private _sticky;
