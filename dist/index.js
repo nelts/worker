@@ -35,11 +35,11 @@ class WorkerFactory extends factory_1.Factory {
     get frameworker() {
         return this._frameworker;
     }
-    startJob(name, auto, run) {
-        return this.messager.asyncSend('event:put:job', {
-            property: name,
-            auto, run,
-        });
+    startJob(name, options) {
+        return this.messager.asyncSend('event:put:job', name, options);
+    }
+    stopJob(name, options) {
+        return this.messager.asyncSend('event:delete:job', name, options);
     }
     async componentWillCreate() {
         await super.componentWillCreate();

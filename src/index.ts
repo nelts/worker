@@ -1,7 +1,7 @@
 // import * as net from 'net';
 import { Processer } from '@nelts/process';
 import { Factory, InCommingMessage } from '@nelts/factory';
-import { Worker as WorkerMessager, MessageReceiveDataOptions } from '@nelts/messager';
+import { Worker as WorkerMessager, MessageReceiveDataOptions, MessageSendOptions } from '@nelts/messager';
 import { RequireModuleDefault } from '@nelts/utils';
 import WorkerPlugin from './plugin';
 
@@ -59,11 +59,12 @@ export default class WorkerFactory<T extends WorkerServiceFrameworker> extends F
     return this._frameworker;
   }
 
-  startJob(name: string, auto?: boolean, run?: boolean) {
-    return this.messager.asyncSend('event:put:job', {
-      property: name,
-      auto, run,
-    });
+  startJob(name: string, options?: MessageSendOptions) {
+    return this.messager.asyncSend('event:put:job', name, options);
+  }
+
+  stopJob(name: string, options?: MessageSendOptions) {
+    return this.messager.asyncSend('event:delete:job', name, options);
   }
 
   async componentWillCreate() {

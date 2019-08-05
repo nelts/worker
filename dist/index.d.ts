@@ -1,6 +1,6 @@
 import { Processer } from '@nelts/process';
 import { Factory, InCommingMessage } from '@nelts/factory';
-import { Worker as WorkerMessager, MessageReceiveDataOptions } from '@nelts/messager';
+import { Worker as WorkerMessager, MessageReceiveDataOptions, MessageSendOptions } from '@nelts/messager';
 import WorkerPlugin from './plugin';
 export declare class WorkerServiceFrameworker {
     constructor(app: WorkerFactory<WorkerServiceFrameworker>);
@@ -23,7 +23,8 @@ export default class WorkerFactory<T extends WorkerServiceFrameworker> extends F
     readonly sticky: string;
     readonly port: number;
     readonly frameworker: T;
-    startJob(name: string, auto?: boolean, run?: boolean): Promise<any>;
+    startJob(name: string, options?: MessageSendOptions): Promise<any>;
+    stopJob(name: string, options?: MessageSendOptions): Promise<any>;
     componentWillCreate(): Promise<void>;
     componentDidCreated(): Promise<void>;
     componentWillDestroy(): Promise<void>;
