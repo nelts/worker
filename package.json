@@ -1,6 +1,6 @@
 {
   "name": "@nelts/worker",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "worker for nelts",
   "main": "dist/index.js",
   "source": "dist",
