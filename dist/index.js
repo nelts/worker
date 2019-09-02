@@ -13,8 +13,6 @@ class WorkerFactory extends factory_1.Factory {
         this._sticky = args.sticky;
         this._port = Number(args.port || 8080);
         this._messager = new messager_1.Worker(this, args.mpid);
-        if (!this.configs.workerServiceFrameworker)
-            throw new Error('cannot find the workerServiceFrameworker');
     }
     get messager() {
         return this._messager;
@@ -39,6 +37,8 @@ class WorkerFactory extends factory_1.Factory {
     }
     async componentWillCreate() {
         await super.componentWillCreate();
+        if (!this.configs.workerServiceFrameworker)
+            throw new Error('cannot find the workerServiceFrameworker');
         const frameworker = typeof this.configs.workerServiceFrameworker === 'string'
             ? utils_1.RequireModuleDefault(this.configs.workerServiceFrameworker)
             : this.configs.workerServiceFrameworker;
