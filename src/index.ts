@@ -32,6 +32,7 @@ export default class WorkerFactory<T extends WorkerServiceFrameworker> extends F
     this._sticky = args.sticky;
     this._port = Number(args.port || 8080);
     this._messager = new WorkerMessager(this, args.mpid);
+    if (!this.configs.workerServiceFrameworker) throw new Error('cannot find the workerServiceFrameworker');
   }
 
   get messager() {
@@ -64,6 +65,10 @@ export default class WorkerFactory<T extends WorkerServiceFrameworker> extends F
 
   async componentWillCreate() {
     await super.componentWillCreate();
+    const frameworker: { new(app: WorkerFactory<T>): T } = typeof this.configs.workerServiceFrameworker === 'string' 
+      ? RequireModuleDefault<WorkerServiceFrameworker>(this.configs.workerServiceFrameworker) 
+      : this.configs.workerServiceFrameworker;
+    this._frameworker = new frameworker(this);
     if (this._frameworker.componentWillCreate) {
       await this._frameworker.componentWillCreate();
     }
@@ -72,11 +77,6 @@ export default class WorkerFactory<T extends WorkerServiceFrameworker> extends F
 
   async componentDidCreated() {
     await super.componentDidCreated();
-    if (!this.configs.workerServiceFrameworker) throw new Error('cannot find the workerServiceFrameworker');
-    const frameworker: { new(app: WorkerFactory<T>): T } = typeof this.configs.workerServiceFrameworker === 'string' 
-      ? RequireModuleDefault<WorkerServiceFrameworker>(this.configs.workerServiceFrameworker) 
-      : this.configs.workerServiceFrameworker;
-    this._frameworker = new frameworker(this);
     if (this._frameworker.componentDidCreated) {
       await this._frameworker.componentDidCreated();
     }
