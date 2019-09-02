@@ -37,12 +37,6 @@ class WorkerFactory extends factory_1.Factory {
     }
     async componentWillCreate() {
         await super.componentWillCreate();
-        if (!this.configs.workerServiceFrameworker)
-            throw new Error('cannot find the workerServiceFrameworker');
-        const frameworker = typeof this.configs.workerServiceFrameworker === 'string'
-            ? utils_1.RequireModuleDefault(this.configs.workerServiceFrameworker)
-            : this.configs.workerServiceFrameworker;
-        this._frameworker = new frameworker(this);
         if (this._frameworker.componentWillCreate) {
             await this._frameworker.componentWillCreate();
         }
@@ -50,6 +44,12 @@ class WorkerFactory extends factory_1.Factory {
     }
     async componentDidCreated() {
         await super.componentDidCreated();
+        if (!this.configs.workerServiceFrameworker)
+            throw new Error('cannot find the workerServiceFrameworker');
+        const frameworker = typeof this.configs.workerServiceFrameworker === 'string'
+            ? utils_1.RequireModuleDefault(this.configs.workerServiceFrameworker)
+            : this.configs.workerServiceFrameworker;
+        this._frameworker = new frameworker(this);
         if (this._frameworker.componentDidCreated) {
             await this._frameworker.componentDidCreated();
         }
